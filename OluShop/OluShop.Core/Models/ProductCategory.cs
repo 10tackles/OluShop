@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OluShop.Core.Models
+﻿namespace OluShop.Core.Models
 {
     public class ProductCategory:BaseEntity
     {

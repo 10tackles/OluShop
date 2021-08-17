@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using OluShop.Core.Contracts;
 using OluShop.Core.Models;
-using OluShop.DataAccess.InMemory;
 
 namespace OluShop.WebUI.Controllers
 {

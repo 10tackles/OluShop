@@ -1,7 +1,6 @@
 using System;
 using OluShop.Core.Contracts;
 using OluShop.Core.Models;
-using OluShop.DataAccess.InMemory;
 using OluShop.DataAccess.SQL;
 using Unity;
 
