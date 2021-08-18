@@ -1,14 +1,40 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using OluShop.Core.Contracts;
+using OluShop.Core.Models;
 
 namespace OluShop.WebUI.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        IRepository<Product> context;
+        IRepository<ProductCategory> productCategories;
+
+        public HomeController(IRepository<Product> productContext, IRepository<ProductCategory> productCategoryContext)
         {
-            return View();
+            context = productContext;
+            productCategories = productCategoryContext;
         }
 
+        public ActionResult Index()
+        {
+            List<Product> products = context.Collection().ToList();
+            return View(products);
+        }
+
+        public ActionResult Details(string Id)
+        {
+            Product product = context.Find(Id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            else
+            {
+                return View(product);
+            }
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
