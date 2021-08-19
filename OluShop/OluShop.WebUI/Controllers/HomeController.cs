@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using OluShop.Core.Contracts;
 using OluShop.Core.Models;
+using OluShop.Core.ViewModels;
 
 namespace OluShop.WebUI.Controllers
 {
@@ -17,10 +18,25 @@ namespace OluShop.WebUI.Controllers
             productCategories = productCategoryContext;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(string Category = null)
         {
-            List<Product> products = context.Collection().ToList();
-            return View(products);
+            List<Product> products;
+            List<ProductCategory> categories = this.productCategories.Collection().ToList();
+
+            if (Category == null)
+            {
+                products = context.Collection().ToList();
+            }
+            else
+            {
+                products = context.Collection().Where(p => p.Category == Category).ToList();
+            }
+
+            ProductListViewModel model = new ProductListViewModel();
+            model.Products = products;
+            model.ProductCategories = categories;
+
+            return View(model);
         }
 
         public ActionResult Details(string Id)
